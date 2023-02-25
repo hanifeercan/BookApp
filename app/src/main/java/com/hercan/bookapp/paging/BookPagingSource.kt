@@ -19,7 +19,7 @@ class BookPagingSource(val bookApi: BookApi): PagingSource<Int,com.hercan.bookap
             LoadResult.Page(
                 data = response.result,
                 prevKey = if (position == 1) null else position - 1,
-                nextKey = if (position == response.count) null else position + 1
+                nextKey = if (position == 2188) null else position + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

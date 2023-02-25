@@ -8,13 +8,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hercan.bookapp.R
+import com.hercan.bookapp.databinding.RecyclerRowBinding
 
 class BookPagingAdapter : PagingDataAdapter<com.hercan.bookapp.models.Result, BookPagingAdapter.BookViewHolder>(
     COMPARATOR
 ) {
-    class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val recyclerView = itemView.findViewById<TextView>(R.id.book_rv)
-    }
+    class BookViewHolder(val binding: RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {}
 
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<com.hercan.bookapp.models.Result>() {
@@ -39,14 +38,14 @@ class BookPagingAdapter : PagingDataAdapter<com.hercan.bookapp.models.Result, Bo
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val item = getItem(position)
         item?.let{
-            if (it.title != null) {
-                holder.recyclerView.text = it.title ?: "null"
-            }
+            holder.binding.recyclerViewRow.text = it.title
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row, parent, false)
-        return BookViewHolder(view)
+        val binding=RecyclerRowBinding.inflate(LayoutInflater.from(parent.context))
+     //   val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row, parent, false)
+     //   return BookViewHolder(view)
+        return BookViewHolder(binding)
     }
 }
