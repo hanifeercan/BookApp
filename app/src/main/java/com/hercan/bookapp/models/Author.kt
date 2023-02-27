@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Author(
     @SerializedName("birth_year")
-    val birthYear: Int,
+    val birthYear: Int?,
     @SerializedName("death_year")
-    val deathYear: Int,
+    val deathYear: Int?,
     @SerializedName("name")
-    val name: String
+    val name: String?
 )

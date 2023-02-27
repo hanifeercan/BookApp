@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/allBooksFragment"
-        android:name="com.hercan.bookapp.AllBooksFragment"
+        android:name="com.hercan.bookapp.ui.AllBooksFragment"
         android:label="fragment_all_books"
-        tools:layout="@layout/fragment_all_books" />
+        tools:layout="@layout/fragment_all_books" >
+        <action
+            android:id="@+id/action_allBooksFragment_to_bookInfoFragment"
+            app:destination="@id/bookInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookInfoFragment"
+        android:name="com.hercan.bookapp.ui.BookInfoFragment"
+        android:label="fragment_book_info"
+        tools:layout="@layout/fragment_book_info" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

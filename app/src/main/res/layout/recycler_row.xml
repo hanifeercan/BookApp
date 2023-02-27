@@ -10,12 +10,13 @@
         android:id="@+id/recyclerViewRow"
         android:maxLines="1"
         android:ellipsize="end"
-        android:text="deneme"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:padding="8dp"
+        android:textColor="@color/black"
         android:layout_weight="1"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#CCC"/>
+        android:background="@color/black"/>
 </LinearLayout>

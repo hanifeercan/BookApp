@@ -13,6 +13,7 @@ import com.hercan.bookapp.databinding.RecyclerRowBinding
 class BookPagingAdapter : PagingDataAdapter<com.hercan.bookapp.models.Result, BookPagingAdapter.BookViewHolder>(
     COMPARATOR
 ) {
+    private var clickListener : ((Int) -> Unit)? = null
     class BookViewHolder(val binding: RecyclerRowBinding) : RecyclerView.ViewHolder(binding.root) {}
 
     companion object {
@@ -40,6 +41,11 @@ class BookPagingAdapter : PagingDataAdapter<com.hercan.bookapp.models.Result, Bo
         item?.let{
             holder.binding.recyclerViewRow.text = it.title
         }
+
+        holder.itemView.setOnClickListener {
+            val id = item?.id
+            clickListener?.invoke(id?:-1)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -47,5 +53,8 @@ class BookPagingAdapter : PagingDataAdapter<com.hercan.bookapp.models.Result, Bo
      //   val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row, parent, false)
      //   return BookViewHolder(view)
         return BookViewHolder(binding)
+    }
+    fun setClickListener(listener: (Int)->Unit){
+        this.clickListener = listener
     }
 }

@@ -1,4 +1,4 @@
-package com.hercan.bookapp
+package com.hercan.bookapp.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.PagingData
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hercan.bookapp.databinding.FragmentAllBooksBinding
 import com.hercan.bookapp.paging.BookPagingAdapter
 import com.hercan.bookapp.paging.LoaderAdapter
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
@@ -53,6 +52,10 @@ class AllBooksFragment : Fragment() {
             bookViewModel.list.observe(viewLifecycleOwner, Observer {
                 adapter.submitData(lifecycle,it)
             })
+        }
+        adapter.setClickListener {
+            val action = AllBooksFragmentDirections.actionAllBooksFragmentToBookInfoFragment(it)
+            findNavController(requireView()).navigate(action)
         }
     }
 }

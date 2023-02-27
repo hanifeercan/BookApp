@@ -8,7 +8,7 @@ import com.hercan.bookapp.retrofit.BookApi
 import javax.inject.Inject
 
 class BookRepository @Inject constructor(val bookApi: BookApi) {
-    fun getBooks()= Pager(
+    fun getBooks() = Pager(
         config = PagingConfig(pageSize = 2188),
         pagingSourceFactory = { BookPagingSource(bookApi) }
     ).liveData

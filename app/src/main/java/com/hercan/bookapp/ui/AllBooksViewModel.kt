@@ -1,4 +1,4 @@
-package com.hercan.bookapp
+package com.hercan.bookapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
