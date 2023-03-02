@@ -13,4 +13,6 @@ data class Result(
     val subjects: List<String?>?,
     @SerializedName("title")
     val title: String?,
+    @SerializedName("formats")
+    val formats: Formats?,
 )
