@@ -1,13 +1,10 @@
 package com.hercan.bookapp.paging
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.hercan.bookapp.R
 import com.hercan.bookapp.databinding.RecyclerRowBinding
 
 class BookPagingAdapter : PagingDataAdapter<com.hercan.bookapp.models.Result, BookPagingAdapter.BookViewHolder>(
@@ -50,8 +47,6 @@ class BookPagingAdapter : PagingDataAdapter<com.hercan.bookapp.models.Result, Bo
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
         val binding=RecyclerRowBinding.inflate(LayoutInflater.from(parent.context))
-     //   val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row, parent, false)
-     //   return BookViewHolder(view)
         return BookViewHolder(binding)
     }
     fun setClickListener(listener: (Int)->Unit){

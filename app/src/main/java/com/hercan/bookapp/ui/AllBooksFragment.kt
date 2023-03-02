@@ -5,26 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hercan.bookapp.databinding.FragmentAllBooksBinding
 import com.hercan.bookapp.paging.BookPagingAdapter
 import com.hercan.bookapp.paging.LoaderAdapter
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
 class AllBooksFragment : Fragment() {
     private var _binding: FragmentAllBooksBinding? = null
     private val binding get() = _binding!!
-
     lateinit var adapter: BookPagingAdapter
     lateinit var bookViewModel: AllBooksViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -32,6 +32,7 @@ class AllBooksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View{
         _binding = FragmentAllBooksBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -45,13 +46,16 @@ class AllBooksFragment : Fragment() {
             header = LoaderAdapter(),
             footer = LoaderAdapter()
         )
-        /*bookViewModel.list.observe(this, Observer<PagingData<com.hercan.bookapp.models.Result>> {
-            adapter.submitData(lifecycle, it)
-        })*/
         lifecycleScope.launch {
-            bookViewModel.list.observe(viewLifecycleOwner, Observer {
+            bookViewModel.list.collectLatest {
                 adapter.submitData(lifecycle,it)
-            })
+            }
+        }
+        adapter.addLoadStateListener {
+            it.refresh.let {
+                binding.progressBar.isVisible = it is LoadState.Loading
+                binding.bookRv.isVisible= it is LoadState.NotLoading
+            }
         }
         adapter.setClickListener {
             val action = AllBooksFragmentDirections.actionAllBooksFragmentToBookInfoFragment(it)

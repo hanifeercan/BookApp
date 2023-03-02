@@ -1,75 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8B5EDC"
-    android:orientation="vertical"
     tools:context=".ui.BookInfoFragment">
-
-    <TextView
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Book Name:"
-        android:paddingStart="20dp"
-        android:drawableLeft="@drawable/baseline_auto_stories_24"
-        android:drawablePadding="10dp"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
-    <TextView
-        android:id="@+id/bookNameTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#9F96AA" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Book Info:"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
-    <TextView
-        android:id="@+id/subjectsTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-    <TextView
-        android:id="@+id/languagesTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-
-
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/black"/>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/bookinfoLinearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Author:"
-            android:drawableLeft="@drawable/baseline_edit_24"
-            android:paddingStart="20dp"
             android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/baseline_auto_stories_24"
             android:drawablePadding="10dp"
+            android:paddingStart="20dp"
+            android:text="Book Name:"
             android:textColor="@color/black"
             android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/bookNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#9F96AA" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:text="Book Info:"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/subjectsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/languagesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/baseline_edit_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="20dp"
+            android:text="Author:"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
         <TextView
             android:id="@+id/authorNameTextView"
             android:layout_width="match_parent"
@@ -77,27 +86,31 @@
             android:paddingStart="20dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#9F96AA" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Author Info:"
-            android:paddingStart="20dp"
-            android:drawablePadding="10dp"
             android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:paddingStart="20dp"
+            android:text="Author Info:"
             android:textColor="@color/black"
             android:textSize="22sp" />
+
         <TextView
             android:id="@+id/authorByearTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
             android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/authorDyearTextView"
             android:layout_width="match_parent"
@@ -109,4 +122,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</FrameLayout>

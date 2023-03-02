@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hercan.bookapp.databinding.FragmentBookInfoBinding
 import com.hercan.bookapp.models.Author
@@ -32,19 +33,30 @@ class BookInfoFragment : Fragment() {
             val id = BookInfoFragmentArgs.fromBundle(it).id
             viewModel.getBooksWithId(id)
             viewModel.booksData.observe(viewLifecycleOwner) {
-                binding.bookNameTextView.text = it.result?.get(0)?.title.toString()
-                binding.authorNameTextView.text = getAuthors(it.result?.get(0)?.authors)
+                binding.bookNameTextView.text = it.result.get(0).title.toString()
+                binding.authorNameTextView.text = getAuthors(it.result.get(0).authors)
                 binding.subjectsTextView.text =
-                    "Subjects:" + getSubjects(it.result?.get(0)?.subjects)
+                    "Subjects:" + getSubjects(it.result.get(0).subjects)
                 binding.languagesTextView.text =
-                    "Languages:" + getLanguage(it.result?.get(0)?.languages)
-                binding.authorByearTextView.text=
-                    "Birth Year: "+it.result?.get(0)?.authors?.get(0)?.birthYear.toString()
-                binding.authorDyearTextView.text=
-                    "Death Year: "+it.result?.get(0)?.authors?.get(0)?.deathYear.toString()
+                    "Languages:" + getLanguage(it.result.get(0).languages)
+                binding.authorByearTextView.text =
+                    "Birth Year: " + it.result.get(0).authors?.get(0)?.birthYear.toString()
+                binding.authorDyearTextView.text =
+                    "Death Year: " + it.result.get(0).authors?.get(0)?.deathYear.toString()
             }
+        }
+        viewModel.loading.observe(viewLifecycleOwner, Observer {
+            loadingDataControl(it)
+        })
+    }
 
-
+    fun loadingDataControl(boolean: Boolean) {
+        if (boolean) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.bookinfoLinearLayout.visibility = View.INVISIBLE
+        } else {
+            binding.progressBar.visibility = View.INVISIBLE
+            binding.bookinfoLinearLayout.visibility = View.VISIBLE
         }
     }
 
@@ -96,4 +108,5 @@ class BookInfoFragment : Fragment() {
             return "no language information"
         }
     }
+
 }
